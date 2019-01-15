@@ -72,12 +72,13 @@ def usage():
 
 usage_doc = """
 
- Usage : migrate-hv.py <source_hypervisor_label> <destination_hypervisor_label> 
+ Usage : migrate-vps.py <virtual_machine_list_file> <destination_hypervisor_label>
 
- Description : Script to migrate all virtual machines on a hypervisor to another. 
+ Description : Script to migrate all virtual machines listed on the file to a hypervisor.
 
- NOTE : Onapp supports only migrating the virtual machines between hypervisors that has shared data stores exist. This script does not migrate the          data stores or underlying volume group, it either automatically switch over to the online hypervisor if the other goes down or you have to 
-       manually migrate the volume group holds the virtual machine data. 
+ NOTE : Onapp supports only migrating the virtual machines between hypervisors that has shared data stores exist. This script does not migrate the          data stores or underlying volume group, it either automatically switch over to the online hypervisor if the other goes down or you have to
+       manually migrate the volume group holds the virtual machine data.
+       
 """
 
 
