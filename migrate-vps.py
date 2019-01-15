@@ -1,13 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import MySQLdb
 import sys
 import time 
 import config 
 
+#Read VPS list file
+
 timestamp = time.strftime("%Y%m%d-%H%M%S")
 vps_file = sys.argv[1]   
 vds_list = open(vps_file, "r").readlines()
+
+#Find the ID of hypervisor from the label
 
 def get_hvid(label):
 
@@ -42,6 +46,8 @@ def get_vds_id(source):
 
    cur.close()
    conn.close()
+
+#Update hypervisor of the listed VPS
 
 def update_hv(destiantion, vds_id):
 
