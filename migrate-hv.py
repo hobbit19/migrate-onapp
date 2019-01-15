@@ -1,14 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import MySQLdb
 import sys
 import time 
 import config 
 
+#Timestamp and VPS list
+
 timestamp = time.strftime("%Y%m%d-%H%M%S")
 file = "vds_list-" + timestamp + ".txt"
 vds_all = []
 
+#Find hypervisor ID from the label provided 
 
 def get_hvid(label):
 
@@ -28,6 +31,8 @@ def get_hvid(label):
    cur.close()
    conn.close()
 
+#List the VPS under the specified hypevisor
+
 def get_vds_id(source):
 
    conn = MySQLdb.connect(host= config.host,
@@ -38,11 +43,12 @@ def get_vds_id(source):
    cur = conn.cursor()
    cur.execute("select id from virtual_machines where hypervisor_id = %s", [source])
    result = cur.fetchall()
-   
    return result
 
    cur.close()
    conn.close()
+
+#Update the database to destination hypervisor
 
 def update_hv(destiantion, vds_id):
 
@@ -59,6 +65,8 @@ def update_hv(destiantion, vds_id):
     print "\n"
     cur.close()
     conn.close()
+
+#Print usage
 
 def usage():
 
